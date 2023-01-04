@@ -29,4 +29,6 @@ def create_app(test_config=None):
     def home():
         return render_template('index.html')
         
-    return app
+    return app 
+
+    
