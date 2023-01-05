@@ -3,7 +3,6 @@ from flask import Flask
 from flask import Flask, render_template
 import requests
 
-
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -27,7 +26,7 @@ def create_app(test_config=None):
 
     @app.route('/')
     def home():
-        return render_template('index.html')
+        return render_template('indexhome.html')
         
     return app 
 
