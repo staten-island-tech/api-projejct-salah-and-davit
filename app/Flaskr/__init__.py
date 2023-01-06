@@ -3,6 +3,12 @@ from flask import Flask
 from flask import Flask, render_template
 import requests
 
+r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=3TU424KGBDST70NI')
+data = r.json()
+import os
+
+from flask import Flask
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -25,8 +31,12 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # a simple page that says hello
     @app.route('/')
     def home():
-        return render_template('index.html')
-        
+        return render_template('indexhome.html')
+
     return app
+
+
+    ## flask --app flaskr --debug run##
