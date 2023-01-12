@@ -1,12 +1,80 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<title>Search Bar</title>
+<style>
+h1
+{
+color: rgba(223, 25, 25, 0.562);
+text-align: center;
+}
+body {
+background-image: linear-gradient(to right, green, brown);
+}
+.topDiv {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-40%, 40%);
+height: 40px;
+border-radius: 40px;
+padding: 10px;
+background: #2f3640;
+border-radius: 40px;
+padding: 10px;
+}
+.topDiv:hover>.searchBar {
+width: 250px;
+padding: 0 5px;
+}
+.topDiv:hover>.button {
+background: white;
+color: blue;
+}
+.button {
+color: red;
+float: right;
+height: 45px;
+border-radius: 50%;
+background: aqua;
+width: 45px;
+justify-content: center;
+align-items: center;
+transition: 0.35s;
+display: flex;
+align-items: center;
+transition: 0.35s;
+}
+.searchBar {
+border: none;
+background: none;
+float: left;
+padding: 0;
+color: white;
+outline: none;
+transition: 0.4s;
+line-height: 40px;
+font-size: 16px;
+width: 0px;
+line-height: 40px;
+padding: 0;
+color: white;
+}
+@media screen and (max-width: 630px) {
+.topDiv:hover>.searchBar {
+width: 160px;
+padding: 0 5px;
+}
+}
+</style>
 </head>
 <body>
-  <body background="https://img.freepik.com/premium-photo/interior-view-illuminated-basketball-stadium-game_207634-1082.jpg?w=2000">
-    <h1 class="header">Welcome To Basketballed World</h1>
+<h1>What play would you like to see?</h1>
+<div class="topDiv">
+<input class="searchBar" type="text" name="" placeholder="Search">
+<button class="button" href="#">
+<i class="material-icons"> search </i>
+</button>
+</div>
 </body>
 </html>

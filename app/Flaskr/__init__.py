@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request
 import os
-import requests
-import json
+from flask import Flask, render_template, request
 
 
 def create_app(test_config=None):
@@ -25,10 +23,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-
-    @app.route("/")
-    def index():
-        return render_template('index.html') 
-    
+    # a simple page that says hello
+    @app.route('/')
+    def home():
+        return render_template('index.html')
+    return app
    
     
