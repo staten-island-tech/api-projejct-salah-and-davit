@@ -3,8 +3,6 @@ from flask import Flask
 from flask import Flask, render_template
 import requests
 
-r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=3TU424KGBDST70NI')
-data = r.json()
 import os
 
 from flask import Flask
@@ -36,7 +34,17 @@ def create_app(test_config=None):
     def home():
         return render_template('indexhome.html')
 
+    @app.route('/players')
+    def players():
+        data=requests.get('https://www.balldontlie.io/api/v1/players').json()
+        return render_template('indexplayers.html', data=data)
+
     return app
 
 
     ## flask --app flaskr --debug run##
+
+
+
+
+
