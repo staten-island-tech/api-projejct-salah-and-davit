@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Pokemon List</title>
+    <style>
+                .title{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body{
+                margin: 0; 
+        }
+        .navbar{
+            background-color: aliceblue;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            padding-top:10px;
+        } 
+
+        .navbarbuttonsingle{
+            text-decoration: none;
+            font-size: 20px;
+            color: purple;
+            margin-top: 30px;
+            margin-left: 10px;
+        }
+
+        .navbarbuttons{
+            padding: 10px;
+        }
+    </style>
+    </head>
+  <body>
+    <div class="navbar">
+        <div class="navbarbuttons">
+            <a href="http://127.0.0.1:5000/" class="navbarbuttonsingle">
+                Search
+            </a>
+            <a href="" class="http://127.0.0.1:5000/pokemon_list">
+                List
+            </a>
+        </div>  
+    </div>
+    <h1>Pokemon List</h1>
+    <ul>
+        {% for poke in poke_list %}
+            <li><a href="{{ url_for('pokemon', poke_name=poke.name) }}">{{ poke.name }}</a></li>
+        {% endfor %}
+    </ul>
+  </body>
+</html>

@@ -1,50 +1,29 @@
-import os
-from flask import Flask
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
-import os
+app = Flask(__name__)
 
-from flask import Flask
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
+@app.route('/pokemon', methods=['GET','POST'])
+def pokemon():
+    poke_name = request.form['poke_name']
     try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+        poke_data = requests.get(f'https://pokeapi.co/api/v2/pokemon/{poke_name}').json()
+        poke_types = [t['type']['name'] for t in poke_data['types']]
+        return render_template('pokemon.html', name=poke_data['name'], types=poke_types)
+    except:
+        return render_template('error.html')
 
-    # a simple page that says hello
-    @app.route('/')
-    def home():
-        return render_template('indexhome.html')
+@app.route('/pokemon_list')
+def pokemon_list():
+    poke_list = requests.get('https://pokeapi.co/api/v2/pokemon?limit=151').json()['results']
+    return render_template('pokemon_list.html', poke_list=poke_list)
 
-    @app.route('/players')
-    def players():
-        data=requests.get('https://www.balldontlie.io/api/v1/players').json()
-        return render_template('indexplayers.html', data=data)
-
-    return app
-
-
-    ## flask --app flaskr --debug run##
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Pokemon Search</title>
+    <style>
+        .title{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body{
+                margin: 0; 
+        }
+        .navbar{
+            background-color: aliceblue;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            padding-top:10px;
+        } 
+
+        .navbarbuttonsingle{
+            text-decoration: none;
+            font-size: 20px;
+            color: purple;
+            margin-top: 30px;
+            margin-left: 10px;
+        }
+
+        .navbarbuttons{
+            padding: 10px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+        <div class="navbarbuttons">
+            <a href="http://127.0.0.1:5000/" class="navbarbuttonsingle">
+                Search
+            </a>
+            <a href="" class="http://127.0.0.1:5000/pokemon_list">
+                List
+            </a>
+        </div>  
+    </div>
+    <h1 class="title">Pokemon Search</h1>
+    <form action="{{ url_for('pokemon') }}" method="get, post">
+      <label for="poke_name">Enter a Pokemon name:</label>
+      <input type="text" id="poke_name" name="poke_name">
+      <input type="submit" value="Search">
+    </form>
+  </body>
+</html>

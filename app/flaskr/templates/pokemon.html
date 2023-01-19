@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{{ name }}</title>
+  
+</head>
+  <body>
+    <h1>{{ name }}</h1>
+    <p>Types:</p>
+    <ul>
+        {% for type in types %}
+            <li>{{ type }}</li>
+        {% endfor %}
+    </ul>
+  </body>
+</html>
