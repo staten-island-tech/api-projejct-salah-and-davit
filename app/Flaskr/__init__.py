@@ -1,32 +1,27 @@
-import os
-from flask import Flask
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
+app = Flask(__name__)
 
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
+@app.route('/pokemon/<name>')
+def pokemon(name):
     try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+        poke_data = requests.get(f'https://pokeapi.co/api/v2/pokemon/{name}').json()
+        poke_types = [t['type']['name'] for t in poke_data['types']]
+        poke_abilities = [a['ability']['name'] for a in poke_data['abilities']]
+        poke_stats = {s['stat']['name']: s['base_stat'] for s in poke_data['stats']}
+        return render_template('pokemon.html', poke_data=poke_data, poke_types=poke_types, poke_abilities=poke_abilities, poke_stats=poke_stats)
+    except:
+        return render_template('error.html')
 
-    @app.route('/')
-    def home():
-        return render_template('index.html')
-        
-    return app
+@app.route('/pokemons')
+def pokemons():
+    poke_list = requests.get('https://pokeapi.co/api/v2/pokemon?limit=151').json()['results']
+    return render_template('pokemons.html', poke_list=poke_list)
+
+if __name__ == '__main__':
+    app.run(debug=True)
