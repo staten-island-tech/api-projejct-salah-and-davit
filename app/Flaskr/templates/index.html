@@ -1,11 +1,26 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <body background="https://media.istockphoto.com/id/1301086097/photo/snow-in-a-baketball-court.jpg?s=612x612&w=0&k=20&c=UwnUfH4r5U3AZv4aDYsdtNB4BtII5ufTLE-_7XRRD1I==">
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Pokemon Search</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Pokemon Search</h1>
+                <form action="/pokemon" method="get" class="form-inline justify-content-center">
+                    <div class="form-group mx-sm-3">
+                        <label for="poke_name" class="sr-only">Pokemon name</label>
+                        <input type="text" class="form-control" id="poke_name" name="poke_name" placeholder="Enter Pokemon name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/pokemons" class="btn btn-secondary">List of Pokemons</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
 </html>
