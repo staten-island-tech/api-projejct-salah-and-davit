@@ -7,14 +7,14 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/pokemon/<name>')
+@app.route('/pokemons/<name>')
 def pokemon(name):
     try:
         poke_data = requests.get(f'https://pokeapi.co/api/v2/pokemon/{name}').json()
         poke_types = [t['type']['name'] for t in poke_data['types']]
         poke_abilities = [a['ability']['name'] for a in poke_data['abilities']]
         poke_stats = {s['stat']['name']: s['base_stat'] for s in poke_data['stats']}
-        return render_template('pokemon.html', poke_data=poke_data, poke_types=poke_types, poke_abilities=poke_abilities, poke_stats=poke_stats)
+        return render_template('pokemons.html', poke_data=poke_data, poke_types=poke_types, poke_abilities=poke_abilities, poke_stats=poke_stats)
     except:
         return render_template('error.html')
 
